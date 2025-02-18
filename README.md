@@ -1,7 +1,7 @@
 # RPI4SignalGenerator 
 
 > This Python script generates and plays a waveform (sine or square) of a 
-> specified frequency, duration, and volume using the `pyaudio` and `numpy` 
+> specified frequency, duration, and amplitude using the `pyaudio` and `numpy` 
 > libraries.
 
 ## Requirements
