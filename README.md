@@ -1,6 +1,8 @@
 # RPI4SignalGenerator 
 
-> This Python script generates and plays a sine wave of a specified frequency, duration, and volume using the `pyaudio` and `numpy` libraries.
+> This Python script generates and plays a waveform (sine or square) of a 
+> specified frequency, duration, and volume using the `pyaudio` and `numpy` 
+> libraries.
 
 ## Requirements
 
@@ -17,33 +19,44 @@ pip install numpy pyaudio argparse
 
 ## Usage
 ```bash
-python src/main.py [-d DURATION] [-f FREQUENCY] [-v VOLUME]
+python siggen.py [type] [-d duration] [-f frequency] [-a amplitude]
 ```
 
 ### Arguments
 
--d, --duration: Duration of the waveform output in seconds (default: 10.0). Accepts float values.
+type: (Optional) The type of waveform to generate. 
+Can be sine or square. Defaults to sine.
 
--f, --frequency: Sine frequency in Hz (default: 440.0). Accepts float values.
+-d, --duration: (Optional) The duration of the waveform 
+in seconds. Defaults to 10.0.
 
--v, --volume: Sound volume from 0.0 (mute) to 1.0 (maximum) (default: 0.5). Accepts float values.
+-f, --frequency: (Optional) The frequency of the waveform in Hz. 
+Defaults to 440.0.
+
+-a, --amplitude: (Optional) The amplitude of the waveform, ranging 
+from 0.0 to 1.0. Defaults to 0.5.
 
 ## Examples
-- Play a 5-second sine wave at 500 Hz with a volume of 0.7:
+- Play a sine wave with default parameters (10 seconds, 440Hz, 0.5 amplitude):
 ```Bash
-python sine_wave_generator.py -d 5 -f 500 -v 0.7
+python siggen.py
 ```
-- Play a 10-second (default) sine wave at 440 Hz (default) with maximum volume:
+- Play a 5-second sine wave at 500 Hz with an amplitude of 0.7:
 ```Bash
-python sine_wave_generator.py -v 1.0
+python siggen.py sine -d 5 -f 500 -a 0.7
 ```
-- Play a 2-second sine wave at 200 Hz with a volume of 0.2:
+- Play a 10-second square wave at the default frequency and amplitude:
 ```Bash
-python sine_wave_generator.py -d 2 -f 200 -v 0.2
+python siggen.py square
 ```
 
 ## Description
-The script uses argparse to handle command-line arguments for duration, frequency, and volume. It then generates a sine wave using numpy and plays it using pyaudio.  The script explicitly converts the numpy array of samples to a byte sequence using .tobytes() as required by pyaudio. The sample format used is paFloat32, meaning sample values must be within the range [-1.0, 1.0]. The script prints the frequency being played and the actual duration of the playback.
+The script uses numpy to generate the waveform samples and pyaudio to play the 
+audio. It takes command-line arguments using the argparse module to customize 
+the generated sound. The script calculates the samples for the specified 
+waveform type (sine or square) and then plays them through the system's audio 
+output. The amplitude is applied to the generated samples before they are 
+converted to bytes and sent to the audio stream.
 
 ## Notes
 - Ensure you have the necessary audio drivers installed for pyaudio to work correctly.
@@ -54,3 +67,5 @@ The script uses argparse to handle command-line arguments for duration, frequenc
 ```bash
  pactl -- set-sink-volume 0 100%
 ```
+## Contact
+Sid Chaudhary - contact.sid.chaudhary@gmail.com
