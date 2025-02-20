@@ -36,7 +36,7 @@ parser.add_argument('-a', '--amplitude',
                     default=0.5
                     )
 parser.add_argument('-e', '--end-frequency',
-                    help='(sweep mode only) wave frequency in Hz to end signal sweep',
+                    help='(sweep mode only) final frequency value of sweep in Hz',
                     type=float,
                     default=1440.0
                     )
