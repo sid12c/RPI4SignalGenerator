@@ -103,9 +103,7 @@ else:
         stream.write(output_bytes)
         print('Output: {:.1f} Hz sine wave for {:.2f} seconds'
               .format(f + (i * s),
-                      time.time() - start_time)
-                      )
-        # print('Waveform output for {:.2f} seconds'.format(time.time() - start_time))
+                      time.time() - start_time))
 
         stream.stop_stream()
         stream.close()
